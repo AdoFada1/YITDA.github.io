@@ -1,4 +1,4 @@
-﻿body {
+body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f4f4f4;
@@ -32,14 +32,6 @@ section {
     margin: 20px;
 }
 
-footer {
-    background-color: #0044cc;
-    color: white;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
 form {
     background: white;
     padding: 20px;
@@ -76,4 +68,13 @@ button {
 
 button:hover {
     background: #003399;
+}
+
+footer {
+    background-color: #0044cc;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
