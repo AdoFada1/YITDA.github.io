@@ -1,58 +1,315 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YITDA - Welcome</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>AISEB Office Communication Portal</title>
+    <style>
+        :root {
+            --primary-color: #0a1931; /* Dark blue, like space */
+            --accent-color: #00e6c3; /* Cyan, like a terminal */
+            --light-color: #f5f5f5; /* Off-white */
+            --warning-color: #ff3860; /* For errors */
+            --success-color: #23d160; /* For success messages */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-style: italic;
+            color: var(--accent-color);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #eee;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        nav button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        nav button:hover {
+            background-color: #142850;
+        }
+        nav button.active {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Form Sections */
+        .form-section {
+            display: none; /* Hidden by default */
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .form-section.active {
+            display: block; /* Show the active section */
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Makes padding not affect width */
+            font-family: inherit;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.9;
+        }
+
+        .required {
+            color: var(--warning-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to YITDA</h1>
-        <p>Your gateway to digital transformation</p>
+        <div class="container">
+            <h1>ALIEN INTEGRATION SUPPORT EXECUTIVE BUREAU</h1>
+            <p>Inter-Departmental Communication & Resource Portal</p>
+        </div>
     </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section>
-        <h2>About YITDA</h2>
-        <p>Yobe Information Technology Deployment Agency (YITDA) is dedicated to empowering businesses and individuals with IT solutions.</p>
-    </section>
+    <main class="container">
+        <nav>
+            <button id="btn-report" class="active" onclick="showSection('report-section')">Submit Report to High Command</button>
+            <button id="btn-staff" onclick="showSection('staff-section')">Assimilate New Crewmember</button>
+        </nav>
 
-    <section>
-        <h2>Register Your Business</h2>
-        <form action="#" method="POST">
-            <label for="business-name">Business Name:</label>
-            <input type="text" id="business-name" name="business-name" required>
+        <!-- SECTION 1: REPORT SUBMISSION -->
+        <section id="report-section" class="form-section active">
+            <h2>Transmit Data Packet</h2>
+            <form id="report-form">
+                <div class="form-group">
+                    <label for="department">Your Sector (Department) <span class="required">*</span></label>
+                    <select id="department" name="department" required>
+                        <option value="">-- Select Your Sector --</option>
+                        <option value="xenobiology">Xenobiology</option>
+                        <option value="engineering">Engineering & Wormhole Maintenance</option>
+                        <option value="logistics">Planetary Logistics</option>
+                        <option value="security">Security & Diplomacy</option>
+                        <option value="command">Command</option>
+                    </select>
+                </div>
 
-            <label for="owner-name">Owner's Name:</label>
-            <input type="text" id="owner-name" name="owner-name" required>
+                <div class="form-group">
+                    <label for="report-type">Packet Type (Report Type) <span class="required">*</span></label>
+                    <select id="report-type" name="report-type" required>
+                        <option value="">-- Select Packet Type --</option>
+                        <option value="performance">Performance Scan</option>
+                        <option value="financial">Resource Requisition</option>
+                        <option value="project">Mission Status Update</option>
+                        <option value="incident">Anomaly Report</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
 
-            <label for="contact">Contact Number:</label>
-            <input type="tel" id="contact" name="contact" required>
+                <div class="form-group">
+                    <label for="report-date">Stardate (Report Date) <span class="required">*</span></label>
+                    <input type="date" id="report-date" name="report-date" required>
+                </div>
 
-            <label for="category">Business Category:</label>
-            <select id="category" name="category">
-                <option value="cybercafe">Cyber Café</option>
-                <option value="gsm">GSM Sales & Repairs</option>
-                <option value="computer-repairs">Computer Repairs</option>
-            </select>
+                <div class="form-group">
+                    <label for="report-file">Upload Data Packet (File) <span class="required">*</span></label>
+                    <input type="file" id="report-file" name="report-file" required>
+                    <small>Please submit files in .PDF (for records) and .DOCX/.XLSX (for analysis) format.</small>
+                </div>
 
-            <button type="submit">Register</button>
-        </form>
-    </section>
+                <div class="form-group">
+                    <label for="message">Transmission Summary (Message to High Command)</label>
+                    <textarea id="message" name="message" placeholder="Briefly summarize the report and any required actions..."></textarea>
+                </div>
+
+                <button type="submit">Initiate Transmission</button>
+            </form>
+        </section>
+
+        <!-- SECTION 2: STAFF REGISTRATION -->
+        <section id="staff-section" class="form-section">
+            <h2>Initiate Crewmember Assimilation</h2>
+            <form id="staff-form">
+                <div class="form-group">
+                    <label for="staff-name">Crewmember Designation (Full Name) <span class="required">*</span></label>
+                    <input type="text" id="staff-name" name="staff-name" placeholder="e.g., Zorp of Blargon-7" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="staff-email">Comlink Address (Email) <span class="required">*</span></label>
+                    <input type="email" id="staff-email" name="staff-email" placeholder="zorp@aiseb.space" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="staff-department">Assigned Sector (Department) <span class="required">*</span></label>
+                    <select id="staff-department" name="staff-department" required>
+                        <option value="">-- Assign to Sector --</option>
+                        <option value="xenobiology">Xenobiology</option>
+                        <option value="engineering">Engineering & Wormhole Maintenance</option>
+                        <option value="logistics">Planetary Logistics</option>
+                        <option value="security">Security & Diplomacy</option>
+                        <option value="command">Command</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="staff-title">Official Title (Role) <span class="required">*</span></label>
+                    <input type="text" id="staff-title" name="staff-title" placeholder="e.g., Junior Plasma Analyst" required>
+                </div>
+
+                <div class="form-group">
+                    <label>System Permissions (Access Rights) <span class="required">*</span></label><br>
+                    <input type="checkbox" id="perm-drive" name="permissions" value="drive">
+                    <label for="perm-drive">Sector Drive Access</label><br>
+
+                    <input type="checkbox" id="perm-projects" name="permissions" value="projects">
+                    <label for="perm-projects">Mission Software</label><br>
+
+                    <input type="checkbox" id="perm-comms" name="permissions" value="comms">
+                    <label for="perm-comms">Sector Communication Channel</label><br>
+
+                    <input type="checkbox" id="perm-finance" name="permissions" value="finance">
+                    <label for="perm-finance">Read-Only Resource Database</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="command-code">Command Verification Code <span class="required">*</span></label>
+                    <input type="text" id="command-code" name="command-code" placeholder="Enter your personal authorization code" required>
+                </div>
+
+                <button type="submit">Assimilate Crewmember</button>
+            </form>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 YITDA. All rights reserved.</p>
+        <div class="container">
+            <p>© 2023 Alien Integration Support Executive Bureau. All planetary regulations apply.</p>
+            <p>Ensure all transmissions are in compliance with Intergalactic Directive 7B.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Simple function to switch between the two forms
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('nav button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the requested section and activate its button
+            document.getElementById(sectionId).classList.add('active');
+            // Find the button that was clicked and activate it
+            event.target.classList.add('active');
+        }
+
+        // Basic form submission handlers (would connect to a server in a real application)
+        document.getElementById('report-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Transmission initiated to High Command. Data packet is queued for processing.');
+            this.reset();
+        });
+
+        document.getElementById('staff-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Assimilation sequence initiated. The IT Core will process the new crewmember profile.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
